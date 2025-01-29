@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import TodosPage from "../src/app/todos/page";
 import "@testing-library/jest-dom";
@@ -9,9 +10,9 @@ describe("TodosPage", () => {
     return render(<Provider store={store}>{component}</Provider>);
   };
 
-  test('muestra el título "Mis Tareas"', () => {
+  test('muestra el texto "Aún no tienes tareas..."', () => {
     renderWithRedux(<TodosPage />);
-    expect(screen.getByText("Mis Tareas")).toBeInTheDocument();
+    expect(screen.getByText("Aún no tienes tareas...")).toBeInTheDocument();
   });
 
   test("renderiza formulario de creación", () => {

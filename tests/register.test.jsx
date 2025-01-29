@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import RegisterPage from "../src/app/register/page";
 import "@testing-library/jest-dom";
