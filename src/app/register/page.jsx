@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Link from "next/link";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 import styles from "./page.module.css";
 
 export default function RegisterPage() {
@@ -17,14 +18,11 @@ export default function RegisterPage() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await fetch(
-        "https://todo-seek-backend-production.up.railway.app/api/register",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const res = await fetch(`${API_BASE}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       if (!res.ok) {
         throw new Error("Error al registrar usuario");

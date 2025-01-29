@@ -63,10 +63,15 @@
   }
 
   .userSection {
-    gap: 0.3rem;
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
   .greeting,
+  .logoutBtn {
+    font-size: 1rem;
+  }
+
   .logoutBtn {
     font-size: 0.75rem;
   }

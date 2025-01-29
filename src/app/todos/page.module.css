@@ -25,9 +25,9 @@
 
   .createForm h2 {
     font-size: 1.5rem;
-    color: #fffb;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 1rem;
   }
 
   .editForm h2 {
@@ -111,17 +111,49 @@
     font-size: 0.85rem;
   }
 
+  .noTasks {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .taskActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .taskActions button {
-    margin-left: 0.5rem;
-    background-color: #666;
     color: #fff;
     border: none;
     padding: 0.3rem 0.6rem;
     cursor: pointer;
     border-radius: 4px;
   }
-  .taskActions button:hover {
-    background-color: #555;
+
+  .editBtn {
+    background: #56b8fa;
+  }
+
+  .editBtn:hover {
+    background: #3b96d3;
+  }
+
+  .completedBtn {
+    background: rgb(6, 190, 6);
+  }
+
+  .completedBtn:hover {
+    background: rgb(4, 134, 4);
+  }
+
+  .deleteBtn {
+    background: red;
+  }
+
+  .deleteBtn:hover {
+    background: rgb(211, 4, 4);
   }
 
   .completed {
@@ -139,8 +171,36 @@
   }
 }
 
+.loadingTasksList {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #ccc;
+  border-top: 5px solid red;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (width < 767px) {
   .container {
     padding: 1rem;
+  }
+
+  .taskActions {
+    gap: 4px;
+  }
+
+  .taskActions button {
+    padding: 5px !important;
+    font-size: 0.75rem;
   }
 }

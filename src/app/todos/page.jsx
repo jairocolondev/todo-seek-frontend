@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 import styles from "./page.module.css";
 
 export default function TodosPage() {
@@ -32,14 +33,11 @@ export default function TodosPage() {
   const fetchTasks = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(
-        "https://todo-seek-backend-production.up.railway.app/api/todos",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/todos`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!res.ok) {
         throw new Error("Error al cargar tareas");
       }
@@ -60,21 +58,18 @@ export default function TodosPage() {
 
   const onSubmitCreate = async (formData) => {
     try {
-      const res = await fetch(
-        "https://todo-seek-backend-production.up.railway.app/api/todos",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title: formData.title,
-            description: formData.description,
-            status: "pending",
-          }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/todos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          status: "pending",
+        }),
+      });
       if (!res.ok) {
         throw new Error("Error al crear la tarea");
       }
@@ -101,20 +96,17 @@ export default function TodosPage() {
   // Guardo cambios de edición
   const onSubmitEdit = async (data) => {
     try {
-      const res = await fetch(
-        `https://todo-seek-backend-production.up.railway.app/api/todos/${taskToEdit.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title: data.title,
-            description: data.description,
-          }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/todos/${taskToEdit.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: data.title,
+          description: data.description,
+        }),
+      });
       if (!res.ok) {
         throw new Error("Error al actualizar la tarea");
       }
@@ -132,20 +124,17 @@ export default function TodosPage() {
   const handleComplete = async (task) => {
     try {
       const now = new Date().toISOString();
-      const res = await fetch(
-        `https://todo-seek-backend-production.up.railway.app/api/todos/${task.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            status: "completed",
-            completedAt: now,
-          }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/todos/${task.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          status: "completed",
+          completedAt: now,
+        }),
+      });
       if (!res.ok) {
         throw new Error("Error al completar la tarea");
       }
@@ -158,38 +147,35 @@ export default function TodosPage() {
   };
 
   // Función para volver a 'pendiente'
-  const handleUncomplete = async (task) => {
-    try {
-      const res = await fetch(
-        `https://tu-api.up.railway.app/api/todos/${task.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            status: "pending",
-            completedAt: null,
-          }),
-        }
-      );
-      if (!res.ok) {
-        throw new Error("Error al desmarcar la tarea");
-      }
-      const updated = await res.json();
-      setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-      Swal.fire({
-        title: "Desmarcada",
-        text: "La tarea volvió a estado pendiente",
-        icon: "info",
-        timer: 2000, // Se cierra en 2 segundos
-        showConfirmButton: false,
-      });
-    } catch (error) {
-      Swal.fire("Error", error.message, "error");
-    }
-  };
+  // const handleUncomplete = async (task) => {
+  //   try {
+  //     const res = await fetch(`${API_BASE}/todos/${task.id}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         status: "pending",
+  //         completedAt: null,
+  //       }),
+  //     });
+  //     if (!res.ok) {
+  //       throw new Error("Error al desmarcar la tarea");
+  //     }
+  //     const updated = await res.json();
+  //     setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+  //     Swal.fire({
+  //       title: "Desmarcada",
+  //       text: "La tarea volvió a estado pendiente",
+  //       icon: "info",
+  //       timer: 2000,
+  //       showConfirmButton: false,
+  //     });
+  //   } catch (error) {
+  //     Swal.fire("Error", error.message, "error");
+  //   }
+  // };
 
   // Eliminar tarea
   const handleDelete = async (taskId) => {
@@ -205,15 +191,12 @@ export default function TodosPage() {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await fetch(
-        `https://todo-seek-backend-production.up.railway.app/api/todos/${taskId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/todos/${taskId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!res.ok) {
         throw new Error("Error al eliminar la tarea");
       }
@@ -231,8 +214,6 @@ export default function TodosPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Mis Tareas</h1>
-
       <div className={styles.createForm}>
         <h2>Crear Nueva Tarea</h2>
         <form onSubmit={handleSubmit(onSubmitCreate)}>
@@ -318,9 +299,14 @@ export default function TodosPage() {
 
       {/* Lista de tareas */}
       {isLoading ? (
-        <p>Cargando...</p>
+        <p className={styles.loadingTasksList}></p>
+      ) : tasks.length === 0 ? (
+        <p style={{ textAlign: "center", fontSize: "1.3rem" }}>
+          Aún no tienes tareas...
+        </p>
       ) : (
         <div className={styles.taskList}>
+          <h1 className={styles.title}>Mis Tareas</h1>
           {tasks.map((task) => (
             <div
               key={task.id}
@@ -335,13 +321,24 @@ export default function TodosPage() {
                 <div className={styles.taskActions}>
                   {task.status !== "completed" && (
                     <>
-                      <button onClick={() => handleEdit(task)}>Editar</button>
-                      <button onClick={() => handleComplete(task)}>
+                      <button
+                        className={styles.editBtn}
+                        onClick={() => handleEdit(task)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className={styles.completedBtn}
+                        onClick={() => handleComplete(task)}
+                      >
                         Completar
                       </button>
                     </>
                   )}
-                  <button onClick={() => handleDelete(task.id)}>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={() => handleDelete(task.id)}
+                  >
                     Eliminar
                   </button>
                 </div>

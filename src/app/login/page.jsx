@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { setCredentials } from "../../store/slices/authSlice";
 import Link from "next/link";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 import styles from "./page.module.css";
 
 export default function LoginPage() {
@@ -20,14 +21,11 @@ export default function LoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await fetch(
-        "https://todo-seek-backend-production.up.railway.app/api/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       if (!res.ok) {
         throw new Error("Credenciales inválidas");
