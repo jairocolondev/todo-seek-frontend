@@ -2,6 +2,7 @@
   "name": "todo-seek-frontend",
   "version": "0.1.0",
   "private": true,
+  "author": "Jairo Colón | Web Developer Freelo",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
