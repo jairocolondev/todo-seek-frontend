@@ -1,126 +1,146 @@
 .container {
   padding: 2rem;
+  width: 95%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2rem auto;
   color: #eee;
   background-color: #333;
-  min-height: 100vh;
+  min-height: 80vh;
+
+  .title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .createForm,
+  .editForm {
+    background-color: #444;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .createForm h2 {
+    font-size: 1.5rem;
+    color: #fffb;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .editForm h2 {
+    margin-bottom: 0.5rem;
+    color: #fffb;
+  }
+
+  .formGroup {
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formGroup label {
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    padding: 0.5rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+  }
+
+  .btnPrimary {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btnPrimary:hover {
+    background-color: #2980b9;
+  }
+
+  .btnSecondary {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btnSecondary:hover {
+    background-color: #444;
+  }
+
+  .errorText {
+    color: #f99;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .taskList {
+    margin-top: 1rem;
+  }
+
+  .taskItem {
+    background-color: #444;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+
+  .taskHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .taskHeader h3 {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .taskActions button {
+    margin-left: 0.5rem;
+    background-color: #666;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .taskActions button:hover {
+    background-color: #555;
+  }
+
+  .completed {
+    background-color: #2c3e50;
+    border-left: 4px solid #2ecc71;
+  }
+
+  .dates {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .dates span {
+    display: inline-block;
+    margin-right: 1rem;
+  }
 }
 
-.title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #fff;
-}
-
-.createForm,
-.editForm {
-  background-color: #444;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-}
-
-.createForm h2,
-.editForm h2 {
-  margin-bottom: 0.5rem;
-  color: #fffb;
-}
-
-.formGroup {
-  margin-bottom: 0.75rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup label {
-  margin-bottom: 0.25rem;
-  font-weight: 500;
-}
-
-.formGroup input,
-.formGroup textarea {
-  padding: 0.5rem;
-  border: 1px solid #888;
-  border-radius: 4px;
-}
-
-.btnPrimary {
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.btnPrimary:hover {
-  background-color: #2980b9;
-}
-
-.btnSecondary {
-  background-color: #555;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.btnSecondary:hover {
-  background-color: #444;
-}
-
-.errorText {
-  color: #f99;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-.taskList {
-  margin-top: 1rem;
-}
-
-.taskItem {
-  background-color: #444;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-}
-
-.taskHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.taskHeader h3 {
-  margin: 0;
-}
-
-.taskActions button {
-  margin-left: 0.5rem;
-  background-color: #666;
-  color: #fff;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.taskActions button:hover {
-  background-color: #555;
-}
-
-.completed {
-  background-color: #2c3e50;
-  border-left: 4px solid #2ecc71;
-}
-
-.dates {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-}
-.dates span {
-  display: inline-block;
-  margin-right: 1rem;
+@media (width < 767px) {
+  .container {
+    padding: 1rem;
+  }
 }

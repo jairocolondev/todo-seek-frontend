@@ -157,6 +157,40 @@ export default function TodosPage() {
     }
   };
 
+  // Función para volver a 'pendiente'
+  const handleUncomplete = async (task) => {
+    try {
+      const res = await fetch(
+        `https://tu-api.up.railway.app/api/todos/${task.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            status: "pending",
+            completedAt: null,
+          }),
+        }
+      );
+      if (!res.ok) {
+        throw new Error("Error al desmarcar la tarea");
+      }
+      const updated = await res.json();
+      setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+      Swal.fire({
+        title: "Desmarcada",
+        text: "La tarea volvió a estado pendiente",
+        icon: "info",
+        timer: 2000, // Se cierra en 2 segundos
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      Swal.fire("Error", error.message, "error");
+    }
+  };
+
   // Eliminar tarea
   const handleDelete = async (taskId) => {
     const confirm = await Swal.fire({
@@ -312,7 +346,7 @@ export default function TodosPage() {
                   </button>
                 </div>
               </div>
-              <p>{task.description}</p>
+              <p className={styles.description}>{task.description}</p>
               <p className={styles.dates}>
                 <span>
                   <strong>Creada el:</strong> {formatDate(task.createdAt)}

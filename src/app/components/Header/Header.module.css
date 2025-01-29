@@ -1,0 +1,73 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: #eee;
+  padding: 0.5rem 1rem;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 80px;
+  margin-right: 0.5rem;
+}
+
+.titleSite {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.greeting {
+  font-weight: 500;
+}
+
+.logoutBtn {
+  background-color: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logoutBtn:hover {
+  background-color: #a93226;
+}
+
+.loginLink {
+  color: #2ecc71;
+  text-decoration: none;
+}
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+@media (width < 767px) {
+  .logo {
+    height: 60px;
+  }
+
+  .titleSite {
+    font-size: 1.2rem;
+  }
+
+  .userSection {
+    gap: 0.3rem;
+  }
+
+  .greeting,
+  .logoutBtn {
+    font-size: 0.75rem;
+  }
+}
