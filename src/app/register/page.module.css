@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #242424;
+}
+
+.formCard {
+  background-color: #fff;
+  width: 380px;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.input {
+  color: #020000;
+  font-size: 14px;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.errorText {
+  margin-top: 0.25rem;
+  color: #c0392b;
+  font-size: 0.875rem;
+}
+
+.submitBtn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submitBtn:hover {
+  background-color: #219150;
+}
+
+.loginText {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.loginLink {
+  color: #3498db;
+  margin-left: 0.25rem;
+  text-decoration: none;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
