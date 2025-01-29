@@ -1,0 +1,17 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["src/app", "src/components", "store"],
+    "includePattern": ".jsx?$",
+    "excludePattern": "(node_modules/|__tests__/)"
+  },
+  "plugins": [],
+  "opts": {
+    "encoding": "utf8",
+    "destination": "./docs",
+    "recurse": true,
+    "verbose": true
+  }
+}

@@ -10,6 +10,17 @@ import Link from "next/link";
 const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 import styles from "./page.module.css";
 
+/**
+ * @file page.jsx
+ * @description Página de Login, autentica al usuario vía formulario
+ */
+
+/**
+ * Página de Login
+ * @component
+ * @returns {JSX.Element}
+ */
+
 export default function LoginPage() {
   const {
     register,

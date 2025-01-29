@@ -15,9 +15,15 @@
     color: #fff;
   }
 
-  .createForm,
-  .editForm {
+  .createForm {
     background-color: #444;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .editForm {
+    background-color: #2b2828;
     padding: 1rem;
     border-radius: 6px;
     margin-bottom: 1rem;
