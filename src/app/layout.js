@@ -13,6 +13,9 @@ const rubik = Rubik({
 export const metadata = {
   title: "Todo Seek",
   description: "Sistema de Gestión de Tareas",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
